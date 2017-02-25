@@ -1,88 +1,23 @@
 {
-  "_args": [
-    [
-      {
-        "raw": "o-ajax",
-        "scope": null,
-        "escapedName": "o-ajax",
-        "name": "o-ajax",
-        "rawSpec": "",
-        "spec": "latest",
-        "type": "tag"
-      },
-      "D:\\bimwook\\hosts\\node-v7.6.0-win-x86"
-    ]
-  ],
-  "_from": "o-ajax@latest",
-  "_id": "o-ajax@0.0.3",
-  "_inCache": true,
-  "_location": "/o-ajax",
-  "_npmOperationalInternal": {
-    "host": "packages-12-west.internal.npmjs.com",
-    "tmp": "tmp/o-ajax-0.0.3.tgz_1487987060322_0.3059712953399867"
-  },
-  "_npmUser": {
-    "name": "xolor",
-    "email": "xolor@foxmail.com"
-  },
-  "_npmVersion": "1.4.28",
-  "_phantomChildren": {},
-  "_requested": {
-    "raw": "o-ajax",
-    "scope": null,
-    "escapedName": "o-ajax",
-    "name": "o-ajax",
-    "rawSpec": "",
-    "spec": "latest",
-    "type": "tag"
-  },
-  "_requiredBy": [
-    "#USER"
-  ],
-  "_resolved": "https://registry.npmjs.org/o-ajax/-/o-ajax-0.0.3.tgz",
-  "_shasum": "add1b39aa71a05d200b43fb4f611b7c0ea3e8a7f",
-  "_shrinkwrap": null,
-  "_spec": "o-ajax",
-  "_where": "D:\\bimwook\\hosts\\node-v7.6.0-win-x86",
-  "bugs": {
-    "url": "https://github.com/bimwook/o-ajax/issues"
-  },
-  "contributors": [
-    {
-      "name": "Bamboo",
-      "url": "https://www.bimwook.com/"
+  "name" : "o-ajax",
+  "description" : "ajax for node",
+  "version" : "0.0.3",
+  "keywords" : ["ajax", "web"],
+  "engines": {"node" :">=7.6.0"}, 
+  "maintainers" : [{
+      "name" : "Bamboo Young",
+      "email" : "bamboo@omuen.com"
     }
   ],
-  "dependencies": {},
-  "description": "ajax for node",
-  "devDependencies": {},
-  "directories": {},
-  "dist": {
-    "shasum": "add1b39aa71a05d200b43fb4f611b7c0ea3e8a7f",
-    "tarball": "https://registry.npmjs.org/o-ajax/-/o-ajax-0.0.3.tgz"
-  },
-  "engines": {
-    "node": ">=7.6.0"
-  },
-  "homepage": "https://github.com/bimwook/o-ajax",
-  "keywords": [
-    "ajax",
-    "web"
-  ],
-  "main": "o-ajax.js",
-  "maintainers": [
-    {
-      "name": "xolor",
-      "email": "xolor@foxmail.com"
+  "contributors" : [{
+      "name" : "Bamboo",
+      "web" : "https://www.bimwook.com/"
     }
   ],
-  "name": "o-ajax",
-  "optionalDependencies": {},
-  "readme": "ERROR: No README data found!",
   "repository": {
     "type": "git",
     "url": "git://github.com/bimwook/o-ajax.git"
   },
-  "scripts": {},
-  "version": "0.0.3"
+  "dependencies" : {},
+  "main" : "o-ajax.js"
 }
