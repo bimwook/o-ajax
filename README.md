@@ -1,5 +1,5 @@
 # o-ajax
-ajax for node.js
+ajax for For node 7.6+
 
 # Install
 > npm install o-ajax
