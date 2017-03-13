@@ -28,7 +28,7 @@ ajax.go = function(method, url, body, headers){
   return new Promise(function (resolve, reject) {
     var URL = require('url');
     var uri = URL.parse(url);
-    var ret = {data: null, error:null, code: 0, headers: null};
+    var ret = {data: "", error:null, code: 0, headers: null};
     if(me.log){
       console.log("\x1B[96m%s\x1B[39m: %s", method.toUpperCase(), url);
     }
@@ -126,7 +126,7 @@ ajax.go = function(method, url, body, headers){
         }
       });
       msg.on('error', function(error){
-        ret.data = null;
+        ret.data = "";
         ret.error = error;
         ret.code = msg.statusCode;
         ret.headers = msg.headers;
@@ -135,7 +135,7 @@ ajax.go = function(method, url, body, headers){
     });
     client.on('error', function(e){
       global.clearInterval(timer);      
-      ret.data = null;
+      ret.data = "";
       ret.error = e;
       ret.code = 0;
       ret.headers = null;
@@ -148,7 +148,7 @@ ajax.go = function(method, url, body, headers){
         global.clearInterval(timer);
         timer = null;
         client.abort();
-        ret.data = null;
+        ret.data = "";
         ret.error = "time-out";
         ret.code = 0;
         ret.headers = null;
