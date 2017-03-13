@@ -1,23 +1,88 @@
 {
-  "name" : "o-ajax",
-  "description" : "ajax for node",
-  "version" : "0.0.3",
-  "keywords" : ["ajax", "web"],
-  "engines": {"node" :">=7.6.0"}, 
-  "maintainers" : [{
-      "name" : "Bamboo Young",
-      "email" : "bamboo@omuen.com"
+  "_args": [
+    [
+      {
+        "raw": "o-ajax",
+        "scope": null,
+        "escapedName": "o-ajax",
+        "name": "o-ajax",
+        "rawSpec": "",
+        "spec": "latest",
+        "type": "tag"
+      },
+      "/home/bamboo/omuen"
+    ]
+  ],
+  "_from": "o-ajax@latest",
+  "_id": "o-ajax@0.0.4",
+  "_inCache": true,
+  "_location": "/o-ajax",
+  "_nodeVersion": "7.6.0",
+  "_npmOperationalInternal": {
+    "host": "packages-18-east.internal.npmjs.com",
+    "tmp": "tmp/o-ajax-0.0.4.tgz_1489391800662_0.5819985219277442"
+  },
+  "_npmUser": {
+    "name": "xolor",
+    "email": "xolor@foxmail.com"
+  },
+  "_npmVersion": "4.1.2",
+  "_phantomChildren": {},
+  "_requested": {
+    "raw": "o-ajax",
+    "scope": null,
+    "escapedName": "o-ajax",
+    "name": "o-ajax",
+    "rawSpec": "",
+    "spec": "latest",
+    "type": "tag"
+  },
+  "_requiredBy": [
+    "#USER"
+  ],
+  "_resolved": "https://registry.npmjs.org/o-ajax/-/o-ajax-0.0.4.tgz",
+  "_shasum": "ac4236442b13c27b77a55adaa974f8361f6b8508",
+  "_shrinkwrap": null,
+  "_spec": "o-ajax",
+  "_where": "/home/bamboo/omuen",
+  "bugs": {
+    "url": "https://github.com/bimwook/o-ajax/issues"
+  },
+  "contributors": [
+    {
+      "name": "Bamboo",
+      "url": "https://www.bimwook.com/"
     }
   ],
-  "contributors" : [{
-      "name" : "Bamboo",
-      "web" : "https://www.bimwook.com/"
+  "dependencies": {},
+  "description": "ajax for node",
+  "devDependencies": {},
+  "directories": {},
+  "dist": {
+    "shasum": "ac4236442b13c27b77a55adaa974f8361f6b8508",
+    "tarball": "https://registry.npmjs.org/o-ajax/-/o-ajax-0.0.4.tgz"
+  },
+  "engines": {
+    "node": ">=7.6.0"
+  },
+  "homepage": "https://github.com/bimwook/o-ajax",
+  "keywords": [
+    "ajax",
+    "web"
+  ],
+  "main": "ajax.js",
+  "maintainers": [
+    {
+      "name": "xolor",
+      "email": "xolor@foxmail.com"
     }
   ],
+  "name": "o-ajax",
+  "optionalDependencies": {},
   "repository": {
     "type": "git",
     "url": "git://github.com/bimwook/o-ajax.git"
   },
-  "dependencies" : {},
-  "main" : "o-ajax.js"
+  "scripts": {},
+  "version": "0.0.4"
 }
