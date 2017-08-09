@@ -37,6 +37,20 @@ var ajax = require('o-ajax');
 }();
 ```
 
+You can also set headers
+```javascript
+var ajax = require('o-ajax');
++async function(){
+  var o = await ajax.get("https://www.bimwook.com/woo/about.do", {"User-Agent":"Mozilla/5.0 (AS-YOU-WISH)"});
+  if(!o.error){
+    console.log(o.data.toString());
+  }
+  else {
+    console.log(o.error);
+  }
+}();
+```
+
 The return object:
 ```javascript
 {
