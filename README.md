@@ -57,10 +57,11 @@ var ajax = require('o-ajax');
 The return object:
 ```javascript
 {
-  data:[Buffer]
-  error: [error]
-  code: [int]
-  headers: [object]
+  data:<Buffer>,
+  text: <String>,
+  error: <error>,
+  code: <int>,
+  headers: <object>
 }
 ```
 That's All.
