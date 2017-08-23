@@ -1,5 +1,6 @@
-var ajax={};
+const ajax={};
 ajax.log = false;
+ajax.modules = {http: require("http"), https: require("https")};
 ajax.reader = function(){
   var ret = {};
   ret.buffers = [];
@@ -23,12 +24,12 @@ ajax.reader = function(){
   return ret;
 };
 
-ajax.go = function(method, url, body, headers){
+ajax.go = function(method, url, body, headers, proxy){
   var me = this;
   return new Promise(function (resolve, reject) {
     var URL = require('url');
     var uri = URL.parse(url);
-    var ret = {data: "", error:null, code: 0, headers: null};
+    var ret = {data: "", text:"", error:null, code: 0, headers: null};
     if(me.log){
       console.log("\x1B[96m%s\x1B[39m: %s", method.toUpperCase(), url);
     }
@@ -37,7 +38,8 @@ ajax.go = function(method, url, body, headers){
       resolve(ret);
       return;
     }
-    var http = require(uri.protocol.replace(':','')) || require('http');
+    var protocol = proxy ? "http" : ( uri.protocol.replace(':','') || 'http');
+    var http = me.modules[protocol];
     var ua = 'Mozilla/5.0 (' + process.platform + '/' + process.arch +  ' node/' + process.version + ' o-ajax/1.0)';
     var opt = { 
       method: method,
@@ -45,6 +47,24 @@ ajax.go = function(method, url, body, headers){
       port: uri.port, 
       path: uri.path
     };
+    
+    if(proxy){
+      var mc = (proxy||"").match(/([^:]*):([\d]{1,5})/);
+      var p = {hostname:"", port: 0};
+      if(mc){
+        p.hostname = mc[1];
+        p.port = parseInt(mc[2]);
+      }
+      else {
+        ret.error="BAD-PROXY";
+        resolve(ret);
+        return;
+      }    
+
+      opt.hostname = p.hostname;
+      opt.port = p.port; 
+      opt.path = url;
+    }
 
     opt.headers = {};
     opt.headers["User-Agent"] = ua;
@@ -67,7 +87,7 @@ ajax.go = function(method, url, body, headers){
     
     var tick = 0;
     var timer = null;
-    
+        console.log(opt);
     var client = http.request(opt, function(msg) {
       var reader = me.reader();
       var received = 0;
@@ -85,7 +105,7 @@ ajax.go = function(method, url, body, headers){
         reader.write(chunk);
         received += chunk.length;
         if(me.log){
-          console.log("[OnData]: Received=" + (received/1024).toFixed(2) + "K/" + len + "K");
+          process.stdout.write("[OnData]: Received=" + (received/1024).toFixed(2) + "K/" + len + "K  \r");
         }
       });
       msg.on('end', function(){
@@ -99,7 +119,7 @@ ajax.go = function(method, url, body, headers){
         global.clearInterval(timer);
         timer = null;
         if((msg.statusCode==200) && (len>0) && (received<len)){
-          console.log("[OnEnd]: Download Failed.");
+          console.log("\n[OnEnd]: Download Failed.");
           ret.error = "Download Failed";
           ret.headers = msg.headers;
           resolve(ret);
@@ -110,6 +130,7 @@ ajax.go = function(method, url, body, headers){
           var zlib = require('zlib');
           zlib.gunzip((reader.read()||""), function (err, decoded) {
             ret.data = decoded;
+            ret.text = ret.data.toString();
             ret.code = msg.statusCode;
             ret.headers = msg.headers;
             resolve(ret);
@@ -117,12 +138,13 @@ ajax.go = function(method, url, body, headers){
         }
         else{
           ret.data = reader.read()||"";
+          ret.text = ret.data.toString();
           ret.code = msg.statusCode;
           ret.headers = msg.headers;
           resolve(ret);
         }
         if(me.log){
-          console.log("[OnEnd]: Status=" + msg.statusCode);
+          console.log("\n[OnEnd]: Status=" + msg.statusCode);
         }
       });
       msg.on('error', function(error){
@@ -161,12 +183,12 @@ ajax.go = function(method, url, body, headers){
   });  
 }
 
-ajax.get = async function(url, headers){
-  return await this.go("get", url, "", headers);
+ajax.get = async function(url, headers, proxy){
+  return await this.go("get", url, "", headers, proxy);
 }
 
-ajax.post = async function(url, body,  headers){
-  return await this.go("post", url, body, headers);
+ajax.post = async function(url, body,  headers, proxy){
+  return await this.go("post", url, body, headers, proxy);
 }
 
 module.exports = ajax;
